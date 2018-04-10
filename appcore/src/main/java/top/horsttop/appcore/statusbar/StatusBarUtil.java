@@ -23,8 +23,8 @@ import top.horsttop.appcore.R;
 
 /**
  * Created by horsttop on 2016/04/10.
- *
  */
+
 public class StatusBarUtil {
 
     public static final int DEFAULT_STATUS_BAR_ALPHA = 112;
