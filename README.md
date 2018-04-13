@@ -13,6 +13,7 @@
 
     2.1 RxJava 2.0 与 Retrofit
     2.2 Dagger 注入
+    2.3 Auto Value
 
 
 ### 3. 代码量优化
