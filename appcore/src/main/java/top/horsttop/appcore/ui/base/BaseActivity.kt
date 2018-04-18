@@ -9,6 +9,7 @@ import android.view.Window
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import top.horsttop.appcore.R
+import top.horsttop.appcore.core.GenApplication
 import top.horsttop.appcore.extention.ofColor
 import top.horsttop.appcore.statusbar.StatusBarUtil
 
@@ -28,7 +29,7 @@ abstract class BaseActivity<V : MvpView, out P : BasePresenter<V>> : AppCompatAc
      */
     protected abstract val contentViewId: Int
 
-    protected var mPresenter: Presenter<V>? = null
+    protected var mPresenter: BasePresenter<V>? = null
 
     /**
      * 界面初始化操作
@@ -60,10 +61,11 @@ abstract class BaseActivity<V : MvpView, out P : BasePresenter<V>> : AppCompatAc
 //            window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
             setContentView(contentViewId)
+            GenApplication.appGraph?.inject(this)
+
             initStatusBar()
 
 //            GenApp.pushActivity(this)
-
 //            mImm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
             obtainPresenter()

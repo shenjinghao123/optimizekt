@@ -1,6 +1,7 @@
 package top.horsttop.appcore.ui.base
 
 import io.reactivex.disposables.CompositeDisposable
+import top.horsttop.appcore.core.GenApplication
 
 
 /**
@@ -10,10 +11,14 @@ import io.reactivex.disposables.CompositeDisposable
 open class BasePresenter<G : MvpView> : Presenter<G> {
 
     var mvpView: G? = null
-    private set
+        private set
 
     var mCompositeDisposable: CompositeDisposable? = null
-    private set
+        private set
+
+    init {
+        GenApplication.appGraph?.inject(this@BasePresenter)
+    }
 
     override fun attachView(mvpView: G) {
         if (null == mCompositeDisposable) {

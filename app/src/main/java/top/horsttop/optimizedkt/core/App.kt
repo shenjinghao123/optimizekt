@@ -11,5 +11,6 @@ class App : GenApplication(){
 
     override fun onCreate() {
         super.onCreate()
+        appGraphBuilder.build()
     }
 }

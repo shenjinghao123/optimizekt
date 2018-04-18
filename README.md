@@ -7,13 +7,14 @@
     1.3 等待提示
     1.4 页面控件复用
     ～ 1.5 状态栏StatusBar控制 ～
+    1.6 系统状态监听: a.权限    b.网络状态
 
 
 ### 2. 系统框架优化
 
     2.1 RxJava 2.0 与 Retrofit
     2.2 Dagger 注入
-    2.3 Auto Value
+    2.3 Moshi
 
 
 ### 3. 代码量优化
