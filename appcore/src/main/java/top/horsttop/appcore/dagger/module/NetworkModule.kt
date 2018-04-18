@@ -1,4 +1,4 @@
-package top.horsttop.appcore.module
+package top.horsttop.appcore.dagger.module
 
 import com.squareup.moshi.KotlinJsonAdapterFactory
 import com.squareup.moshi.Moshi
