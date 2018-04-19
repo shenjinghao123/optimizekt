@@ -1,5 +1,6 @@
 package top.horsttop.appcore.dagger.component
 
+import android.app.Application
 import dagger.Component
 import top.horsttop.appcore.dagger.module.ApplicationModule
 import top.horsttop.appcore.dagger.module.NetworkModule
@@ -18,5 +19,7 @@ interface AppGraph{
     fun inject(presenter : IPresenter)
 
     fun inject(mvpView: MvpView)
+
+    fun inject(application: Application)
 
 }

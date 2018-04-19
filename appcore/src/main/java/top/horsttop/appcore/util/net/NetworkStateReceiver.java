@@ -20,7 +20,7 @@ public class NetworkStateReceiver extends BroadcastReceiver {
 	private static BroadcastReceiver receiver;
 
 	/**
-	 * 
+	 *
 	 * @Title: getReceiver
 	 * @说 明:获得广播实例
 	 * @参 数: @return
@@ -51,7 +51,7 @@ public class NetworkStateReceiver extends BroadcastReceiver {
 
 	/**
 	 * 注册网络状态广播
-	 * 
+	 *
 	 * @param mContext
 	 */
 	public static void registerNetworkStateReceiver(Context mContext) {
@@ -62,7 +62,7 @@ public class NetworkStateReceiver extends BroadcastReceiver {
 
 	/**
 	 * 检查网络状态
-	 * 
+	 *
 	 * @param mContext
 	 */
 	public static void checkNetworkState(Context mContext) {
@@ -72,7 +72,7 @@ public class NetworkStateReceiver extends BroadcastReceiver {
 
 	/**
 	 * 注销网络状态广播
-	 * 
+	 *
 	 * @param mContext
 	 */
 	public static void unRegisterNetworkStateReceiver(Context mContext) {
@@ -87,7 +87,7 @@ public class NetworkStateReceiver extends BroadcastReceiver {
 
 	/**
 	 * 获取当前网络状态，true为网络连接成功，否则网络连接失败
-	 * 
+	 *
 	 * @return
 	 */
 	public static Boolean isNetworkAvailable() {
@@ -115,7 +115,7 @@ public class NetworkStateReceiver extends BroadcastReceiver {
 
 	/**
 	 * 注册网络连接观察者
-	 * 
+	 *
 	 * @param observer
 	 *            observer
 	 */
@@ -128,7 +128,7 @@ public class NetworkStateReceiver extends BroadcastReceiver {
 
 	/**
 	 * 注销网络连接观察者
-	 * 
+	 *
 	 * @param observer
 	 *            observerKey
 	 */

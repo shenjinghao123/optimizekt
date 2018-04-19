@@ -21,7 +21,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    internal fun ofMoshi(): Moshi {
+    fun ofMoshi(): Moshi {
         return Moshi.Builder()
                 // Add any other JsonAdapter factories.
                 .add(KotlinJsonAdapterFactory())
@@ -30,7 +30,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    internal fun ofOkHttpClient(): OkHttpClient {
+    fun ofOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
                 .addInterceptor(RetrofitInterceptor())
                 .addInterceptor(HttpLoggingInterceptor()
@@ -40,13 +40,13 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    internal fun ofMoshiConverterFactory(moshi: Moshi): MoshiConverterFactory {
+    fun ofMoshiConverterFactory(moshi: Moshi): MoshiConverterFactory {
         return MoshiConverterFactory.create(moshi)
     }
 
     @Provides
     @Singleton
-    internal fun ofRetrofit(okHttpClient: OkHttpClient, factory: MoshiConverterFactory): Retrofit {
+    fun ofRetrofit(okHttpClient: OkHttpClient, factory: MoshiConverterFactory): Retrofit {
         return Retrofit.Builder()
                 .baseUrl(BuildConfig.END_POINT)
                 .client(okHttpClient)

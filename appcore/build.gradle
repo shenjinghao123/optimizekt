@@ -17,7 +17,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         buildConfigField 'String', 'DB_NAME', '"horsttop_xxx.db"'
-        buildConfigField 'String', 'END_POINT', '"https://api.twitter.com/1.1/"'
+        buildConfigField 'String', 'END_POINT', '"http://demo0553684.mockable.io/"'
         buildConfigField 'String', 'AUTH_END_POINT', '"https://api.twitter.com/oauth2/token"'
         buildConfigField 'String', 'CONSUMER_KEY', '"xhBLIT2ZAdutz4aI9rwIjVEuy"'
         buildConfigField 'String', 'CONSUMER_SECRET', '"B6sZAkPQj6F6RDXicWLtv75mn4miBXLpdIZ34tDJ7HTkWqcfOJ"'
@@ -75,7 +75,7 @@ dependencies {
     /* Dagger */
     compile 'com.google.dagger:dagger:2.13'
     kapt 'com.google.dagger:dagger-compiler:2.13'
-    provided 'javax.annotation:jsr250-api:1.0'
+    compile 'javax.annotation:jsr250-api:1.0'
 
 
     /* SqlBrite*/

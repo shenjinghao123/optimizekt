@@ -1,6 +1,5 @@
 package top.horsttop.appcore.util.net;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
