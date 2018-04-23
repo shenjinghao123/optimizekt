@@ -1,15 +1,9 @@
 package top.horsttop.appcore.ui.base
 
-import android.content.Context
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import android.view.Window
-import android.view.WindowManager
-import android.view.inputmethod.InputMethodManager
 import top.horsttop.appcore.R
-import top.horsttop.appcore.core.GenApplication
 import top.horsttop.appcore.extention.ofColor
 import top.horsttop.appcore.statusbar.StatusBarUtil
 
@@ -61,7 +55,6 @@ abstract class BaseActivity<V : MvpView, out P : BasePresenter<V>> : AppCompatAc
 //            window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
             setContentView(contentViewId)
-            GenApplication.appGraph?.inject(this)
 
             initStatusBar()
 
@@ -113,7 +106,6 @@ abstract class BaseActivity<V : MvpView, out P : BasePresenter<V>> : AppCompatAc
     override fun onDestroy() {
         super.onDestroy()
 //        GenUIUtil.dropProgressDialog()
-
 //        GenApp.popActivity(this)
         if (mPresenter != null)
             mPresenter!!.detachView()

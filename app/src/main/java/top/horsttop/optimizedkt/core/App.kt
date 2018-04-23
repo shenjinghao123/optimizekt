@@ -2,6 +2,7 @@ package top.horsttop.optimizedkt.core
 
 import android.app.Application
 import retrofit2.Retrofit
+import timber.log.Timber
 import top.horsttop.appcore.core.GenApplication
 import top.horsttop.optimizedkt.model.api.HttpApi
 import javax.inject.Inject
@@ -20,12 +21,15 @@ class App : GenApplication(){
         super.onCreate()
 
 //        appGraph = appGraphBuilder
-        appGraph?.inject(this)
-        httpApi = retrofit.create(HttpApi::class.java)
+        Timber.d("to inject")
+//        appGraph?.inject(this)
+
+//        httpApi = retrofit.create(HttpApi::class.java)
 
     }
 
     companion object {
         lateinit var httpApi:HttpApi
     }
+
 }

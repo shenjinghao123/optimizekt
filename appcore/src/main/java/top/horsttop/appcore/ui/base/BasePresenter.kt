@@ -16,9 +16,6 @@ open class BasePresenter<G : MvpView> : Presenter<G> {
     var mCompositeDisposable: CompositeDisposable? = null
         private set
 
-    init {
-        GenApplication.appGraph?.inject(this@BasePresenter)
-    }
 
     override fun attachView(mvpView: G) {
         if (null == mCompositeDisposable) {

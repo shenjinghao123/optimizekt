@@ -1,4 +1,4 @@
-package top.horsttop.optimizedkt.component
+package top.horsttop.optimizedkt.di
 
 import dagger.Module
 import dagger.Provides
@@ -15,4 +15,5 @@ class HttpApiModule{
     @Provides
     @Singleton
     fun ofRetrofit(retrofit: Retrofit) : HttpApi = retrofit.create(HttpApi::class.java)
+
 }
