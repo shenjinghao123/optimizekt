@@ -19,6 +19,7 @@ import javax.inject.Singleton
 /**
  * Created by horsttop on 2018/4/13.
  */
+@Singleton
 @Module
 class NetworkModule {
 

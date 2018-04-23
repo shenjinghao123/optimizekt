@@ -51,7 +51,8 @@ abstract class BaseFragment<V : MvpView, out P : BasePresenter<V>> : Fragment(),
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         try {
             rootView = inflater!!.inflate(contentViewId, container, false)
-            GenApplication.appGraph?.inject(this)
+
+
         } catch (e: NullPointerException) {
             e.printStackTrace()
         } catch (e: Exception) {

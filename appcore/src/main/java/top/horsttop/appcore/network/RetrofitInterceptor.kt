@@ -24,25 +24,26 @@ import top.horsttop.appcore.BuildConfig
 class RetrofitInterceptor : Interceptor {
 
     companion object {
-         var token: String? = null
+         var token: String? = ""
     }
 
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
         var request = chain.request()
 
-        if (token == null) {
-            val body = chain.proceed(getToken()).body()
-
-            try {
-                val jsonObject = JSONObject(body!!.string())
-                token = "Bearer " + jsonObject.optString("access_token")
-            } catch (e: JSONException) {
-                e.printStackTrace()
-                Log.d(RetrofitInterceptor::class.java.name, "Error fetching token")
-            }
-
-        }
+//        if (token == null) {
+////            val body = chain.proceed(getToken()).body()
+//            val body = chain.proceed().body()
+//
+//            try {
+//                val jsonObject = JSONObject(body!!.string())
+//                token = "Bearer " + jsonObject.optString("access_token")
+//            } catch (e: JSONException) {
+//                e.printStackTrace()
+//                Log.d(RetrofitInterceptor::class.java.name, "Error fetching token")
+//            }
+//
+//        }
 
         request = request.newBuilder()
                 .addHeader("Authorization", token!!)
@@ -63,7 +64,7 @@ class RetrofitInterceptor : Interceptor {
                 .post(requestBody)
                 .header("Authorization", base64BearerToken)
                 .header("Content-Encoding", "gzip")
-                .header("User-Agent", "My Twitter App v1.0.23")
+                .header("User-Agent", "horsttop")
                 .header("Content-type", "application/x-www-form-urlencoded;charset=UTF-8")
                 .build()
     }

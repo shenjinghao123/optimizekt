@@ -9,6 +9,6 @@ import top.horsttop.optimizedkt.pojo.MsgVo
  */
 interface HttpApi {
 
-    @GET("optimizedkt")
+    @GET("query")
     fun fetchMsg(): Observable<MsgVo>
 }

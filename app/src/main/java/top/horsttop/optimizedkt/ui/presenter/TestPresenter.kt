@@ -12,17 +12,15 @@ import javax.inject.Inject
 /**
  * Created by horsttop on 2018/4/18.
  */
-class TestPresenter : BasePresenter<TestMvpView>() {
+class TestPresenter @Inject constructor(var api: HttpApi) : BasePresenter<TestMvpView>() {
 
-    fun fetchData(){
-//        App.httpApi.fetchMsg()
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe({
-//                    mvpView?.initData(it.msg)
-//                })
-
-
+    fun fetchData() {
+        api.fetchMsg()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    mvpView?.initData(it.msg)
+                })
     }
 
 }

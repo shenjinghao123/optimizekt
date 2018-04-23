@@ -23,7 +23,10 @@ abstract class BaseActivity<V : MvpView, out P : BasePresenter<V>> : AppCompatAc
      */
     protected abstract val contentViewId: Int
 
-    protected var mPresenter: BasePresenter<V>? = null
+//    protected var mPresenter: BasePresenter<V>? = null
+
+    private var mPresenter: BasePresenter<V>? = null
+
 
     /**
      * 界面初始化操作
@@ -35,14 +38,14 @@ abstract class BaseActivity<V : MvpView, out P : BasePresenter<V>> : AppCompatAc
      *
      * @return
      */
-    protected abstract fun obtainMvpView(): V
+//    protected abstract fun obtainMvpView(): V
 
     /**
      * 获取Presenter 引入Presenter,在方法体中给mPresenter赋值
      *
      * @return
      */
-    protected abstract fun obtainPresenter(): P
+    protected abstract fun onActivityInject()
 
     /**
      * 界面唤醒时需要的操作
@@ -61,10 +64,10 @@ abstract class BaseActivity<V : MvpView, out P : BasePresenter<V>> : AppCompatAc
 //            GenApp.pushActivity(this)
 //            mImm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
-            obtainPresenter()
-            if (null != mPresenter) {
-                mPresenter!!.attachView(obtainMvpView())
-            }
+            onActivityInject()
+//            if (null != mPresenter) {
+//                mPresenter!!.attachView(obtainMvpView())
+//            }
             initViews()
         } catch (e: NullPointerException) {
             e.printStackTrace()
@@ -72,7 +75,6 @@ abstract class BaseActivity<V : MvpView, out P : BasePresenter<V>> : AppCompatAc
             //            Log.e(Constant.TAG, this.toString());
             throw InitViewException(e.message!!)
         }
-
     }
 
     protected fun initStatusBar() {

@@ -1,11 +1,11 @@
 package top.horsttop.optimizedkt.core
 
-import android.app.Application
-import retrofit2.Retrofit
 import timber.log.Timber
 import top.horsttop.appcore.core.GenApplication
+import top.horsttop.optimizedkt.di.component.AppComponent
+import top.horsttop.optimizedkt.di.component.DaggerAppComponent
+import top.horsttop.optimizedkt.di.module.ApiModule
 import top.horsttop.optimizedkt.model.api.HttpApi
-import javax.inject.Inject
 
 /**
  * Created by horsttop on 2018/4/13.
@@ -13,23 +13,23 @@ import javax.inject.Inject
 class App : GenApplication(){
 
 
-
-    @Inject
-    lateinit var retrofit:Retrofit
-
     override fun onCreate() {
         super.onCreate()
 
 //        appGraph = appGraphBuilder
         Timber.d("to inject")
 //        appGraph?.inject(this)
-
 //        httpApi = retrofit.create(HttpApi::class.java)
+        appComponent = DaggerAppComponent.builder()
+                .coreComponent(coreComponent)
+                .build()
+        appComponent.inject(this)
 
     }
 
     companion object {
-        lateinit var httpApi:HttpApi
+
+        @JvmStatic lateinit var appComponent: AppComponent
     }
 
 }
