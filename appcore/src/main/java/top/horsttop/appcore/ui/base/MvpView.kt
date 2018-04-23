@@ -9,6 +9,10 @@ interface MvpView {
 
     fun onDataError (error:String = "")
 
+    fun onPageEmpty()
+
+    fun onPageSuccess()
+
     fun onNetworkError()
 
 }

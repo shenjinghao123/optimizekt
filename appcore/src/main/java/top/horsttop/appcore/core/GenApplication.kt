@@ -8,11 +8,16 @@ import top.horsttop.appcore.BuildConfig
 import top.horsttop.appcore.dagger.component.CoreComponent
 import top.horsttop.appcore.dagger.component.DaggerCoreComponent
 import top.horsttop.appcore.dagger.module.ApplicationModule
+import top.horsttop.appcore.load.callback.EmptyCallback
+import top.horsttop.appcore.load.callback.ErrorCallback
+import top.horsttop.appcore.load.callback.LoadingCallback
+import top.horsttop.appcore.load.callback.TimeoutCallback
+import top.horsttop.appcore.load.core.Loader
 
 /**
  * Created by horsttop on 2018/4/13.
  */
-open class GenApplication : Application(){
+open class GenApplication : Application() {
 
     companion object {
         //platformStatic allow access it from java code
@@ -26,6 +31,13 @@ open class GenApplication : Application(){
         }
         initDagger()
 
+        Loader.beginBuilder()
+                .addCallback(ErrorCallback())
+                .addCallback(EmptyCallback())
+                .addCallback(LoadingCallback())
+                .addCallback(TimeoutCallback())
+                .setDefaultCallback(LoadingCallback::class.java)
+                .commit()
 
     }
 

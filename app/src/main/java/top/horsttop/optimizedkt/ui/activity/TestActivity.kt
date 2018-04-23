@@ -31,14 +31,13 @@ class TestActivity : BaseActivity<TestMvpView,TestPresenter>(),TestMvpView {
 
     override fun initData(str: String?) {
         sample_text.text = str
+
     }
 
     override fun initViews() {
-
+        mLoadingArea = rl_content
         Timber.d("xxxx")
         mPresenter.fetchData()
-
-
     }
 
     override fun onClick(v: View?) {

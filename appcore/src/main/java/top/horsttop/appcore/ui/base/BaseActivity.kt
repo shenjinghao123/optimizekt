@@ -2,9 +2,13 @@ package top.horsttop.appcore.ui.base
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.LayoutInflater
 import android.view.View
 import top.horsttop.appcore.R
 import top.horsttop.appcore.extention.ofColor
+import top.horsttop.appcore.load.callback.*
+import top.horsttop.appcore.load.core.LoadService
+import top.horsttop.appcore.load.core.Loader
 import top.horsttop.appcore.statusbar.StatusBarUtil
 
 import java.lang.Exception
@@ -16,6 +20,23 @@ import java.lang.RuntimeException
  * Created by horsttop on 15/12/30.
  */
 abstract class BaseActivity<V : MvpView, out P : BasePresenter<V>> : AppCompatActivity(), MvpView, View.OnClickListener {
+
+    /**
+     * 根布局
+     */
+    protected lateinit var mRootView : View
+
+    /**
+     * contentView
+     */
+    protected  var mLoadingArea : View ?= null
+
+    /**
+     * Loader
+     */
+    protected  var mBaseLoadService : LoadService<*>?= null
+
+
     /**
      * 引入布局文件
      *
@@ -33,12 +54,6 @@ abstract class BaseActivity<V : MvpView, out P : BasePresenter<V>> : AppCompatAc
      */
     protected abstract fun initViews()
 
-    /**
-     * 获取MvpView 实现MvpView的子类接口,方法体中 return this 即可
-     *
-     * @return
-     */
-//    protected abstract fun obtainMvpView(): V
 
     /**
      * 获取Presenter 引入Presenter,在方法体中给mPresenter赋值
@@ -52,32 +67,37 @@ abstract class BaseActivity<V : MvpView, out P : BasePresenter<V>> : AppCompatAc
      */
     protected open fun resumeViews() {}
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         try {
-//            window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
-            setContentView(contentViewId)
+            mRootView = View.inflate(this,contentViewId,null)
+
+            setContentView(mRootView)
 
             initStatusBar()
 
 //            GenApp.pushActivity(this)
-//            mImm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-
             onActivityInject()
-//            if (null != mPresenter) {
-//                mPresenter!!.attachView(obtainMvpView())
-//            }
             initViews()
+
+            if(mLoadingArea !=null){
+                mBaseLoadService = Loader.getDefault().register(mLoadingArea) {
+                    it ->
+                    onReload(it)
+                }
+            }
+
+
         } catch (e: NullPointerException) {
             e.printStackTrace()
         } catch (e: Exception) {
-            //            Log.e(Constant.TAG, this.toString());
             throw InitViewException(e.message!!)
         }
     }
 
-    protected fun initStatusBar() {
+    fun initStatusBar() {
         StatusBarUtil.setColor(this, this.ofColor(R.color.colorPrimary))
     }
 
@@ -86,16 +106,31 @@ abstract class BaseActivity<V : MvpView, out P : BasePresenter<V>> : AppCompatAc
         resumeViews()
     }
 
+    fun setUpLoadingArea(view: View){
+        mLoadingArea = view
+    }
 
     override fun onLoading(tip: String) {
-
+        mBaseLoadService?.showCallback(LoadingCallback::class.java)
     }
 
     override fun onDataError(error: String) {
-
+        mBaseLoadService?.showCallback(ErrorCallback::class.java)
     }
 
     override fun onNetworkError() {
+        mBaseLoadService?.showCallback(TimeoutCallback::class.java)
+    }
+
+    override fun onPageEmpty() {
+        mBaseLoadService?.showCallback(EmptyCallback::class.java)
+    }
+
+    override fun onPageSuccess() {
+        mBaseLoadService?.showSuccess()
+    }
+
+    fun onReload(view: View){
 
     }
 
@@ -109,6 +144,7 @@ abstract class BaseActivity<V : MvpView, out P : BasePresenter<V>> : AppCompatAc
         super.onDestroy()
 //        GenUIUtil.dropProgressDialog()
 //        GenApp.popActivity(this)
+
         if (mPresenter != null)
             mPresenter!!.detachView()
 

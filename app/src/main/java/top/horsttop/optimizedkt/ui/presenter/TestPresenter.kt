@@ -15,10 +15,12 @@ import javax.inject.Inject
 class TestPresenter @Inject constructor(var api: HttpApi) : BasePresenter<TestMvpView>() {
 
     fun fetchData() {
+        mvpView?.onLoading()
         api.fetchMsg()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
+                    mvpView?.onPageEmpty()
                     mvpView?.initData(it.msg)
                 })
     }
