@@ -63,11 +63,11 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun ofOkHttpClient(cache: Cache): OkHttpClient {
+    fun ofOkHttpClient(cache: Cache,context:Application): OkHttpClient {
         Timber.i("to ofOkHttpClient")
 
         return OkHttpClient.Builder()
-                .addInterceptor(RetrofitInterceptor())
+                .addInterceptor(RetrofitInterceptor(context))
                 .addInterceptor(HttpLoggingInterceptor()
                         .setLevel(HttpLoggingInterceptor.Level.BODY))
                 .addNetworkInterceptor(CachingControlInterceptor())

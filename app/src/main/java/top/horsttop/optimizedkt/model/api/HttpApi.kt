@@ -1,6 +1,6 @@
 package top.horsttop.optimizedkt.model.api
 
-import io.reactivex.Observable
+import io.reactivex.Flowable
 import retrofit2.http.GET
 import top.horsttop.optimizedkt.pojo.MsgVo
 
@@ -10,5 +10,5 @@ import top.horsttop.optimizedkt.pojo.MsgVo
 interface HttpApi {
 
     @GET("query")
-    fun fetchMsg(): Observable<MsgVo>
+    fun fetchMsg(): Flowable<MsgVo>
 }

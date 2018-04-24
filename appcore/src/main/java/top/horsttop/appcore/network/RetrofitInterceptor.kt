@@ -1,7 +1,11 @@
 package top.horsttop.appcore.network
 
+import android.app.Application
+import android.content.Context
 import android.util.Base64
 import android.util.Log
+import dagger.Module
+import okhttp3.*
 
 
 import org.json.JSONException
@@ -9,44 +13,38 @@ import org.json.JSONObject
 
 import java.io.IOException
 
-import okhttp3.Interceptor
-import okhttp3.MediaType
-import okhttp3.Request
-import okhttp3.RequestBody
-import okhttp3.Response
-import okhttp3.ResponseBody
 import top.horsttop.appcore.BuildConfig
+import top.horsttop.appcore.core.GenApplication
+import top.horsttop.appcore.util.net.NetWorkUtil
+import java.lang.RuntimeException
+import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * Created by horsttop on 2018/4/13.
  * Interceptor for Retrofit to add auth key to header
  */
-class RetrofitInterceptor : Interceptor {
+
+class RetrofitInterceptor(var context:Context) : Interceptor {
 
     companion object {
-         var token: String? = ""
+         var token: String = "asdf"
     }
 
     @Throws(IOException::class)
-    override fun intercept(chain: Interceptor.Chain): Response {
-        var request = chain.request()
+    override fun intercept(chain: Interceptor.Chain): Response ?{
 
-//        if (token == null) {
-////            val body = chain.proceed(getToken()).body()
-//            val body = chain.proceed().body()
-//
-//            try {
-//                val jsonObject = JSONObject(body!!.string())
-//                token = "Bearer " + jsonObject.optString("access_token")
-//            } catch (e: JSONException) {
-//                e.printStackTrace()
-//                Log.d(RetrofitInterceptor::class.java.name, "Error fetching token")
-//            }
-//
-//        }
+
+        var request = chain.request()
+        val requestBuilder = request.newBuilder()
+                .method(request.method(), request.body())
+        requestBuilder.cacheControl(CacheControl.FORCE_CACHE)
+        if(!NetWorkUtil.isNetworkConnected(context)){
+            throw NetworkErrorException()
+        }
 
         request = request.newBuilder()
-                .addHeader("Authorization", token!!)
+                .addHeader("Authorization", token)
                 .build()
 
         return chain.proceed(request)
@@ -68,4 +66,9 @@ class RetrofitInterceptor : Interceptor {
                 .header("Content-type", "application/x-www-form-urlencoded;charset=UTF-8")
                 .build()
     }
+
+//    Authorization
+
+
+    class NetworkErrorException() : RuntimeException()
 }

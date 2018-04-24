@@ -27,6 +27,7 @@ class TestActivity : BaseActivity<TestMvpView,TestPresenter>(),TestMvpView {
                 .build()
                 .inject(this)
         mPresenter.attachView(this)
+
     }
 
     @Inject

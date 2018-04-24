@@ -1,10 +1,9 @@
 package top.horsttop.optimizedkt.ui.presenter
 
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
-import retrofit2.Retrofit
+import io.reactivex.functions.Consumer
+import top.horsttop.appcore.extention.runOnMainThread
+import top.horsttop.appcore.extention.subscribeX
 import top.horsttop.appcore.ui.base.BasePresenter
-import top.horsttop.optimizedkt.core.App
 import top.horsttop.optimizedkt.model.api.HttpApi
 import top.horsttop.optimizedkt.ui.mvpview.TestMvpView
 import javax.inject.Inject
@@ -16,13 +15,13 @@ class TestPresenter @Inject constructor(var api: HttpApi) : BasePresenter<TestMv
 
     fun fetchData() {
         mvpView?.onLoading()
-        api.fetchMsg()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    mvpView?.onPageEmpty()
+        val subscription = api.fetchMsg()
+                .runOnMainThread()
+                .subscribeX(Consumer{ it ->
+                    mvpView?.onPageSuccess()
                     mvpView?.initData(it.msg)
                 })
+        mCompositeDisposable?.add(subscription)
     }
 
 }

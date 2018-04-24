@@ -22,6 +22,7 @@ open class GenApplication : Application() {
     companion object {
         //platformStatic allow access it from java code
         @JvmStatic lateinit var coreComponent: CoreComponent
+        @JvmStatic lateinit var genApp: Application
     }
 
     override fun onCreate() {
