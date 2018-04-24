@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class NetworkStateReceiver extends BroadcastReceiver {
 	private static Boolean networkAvailable = false;
 	private static NetWorkUtil.NetType netType;
-	private static ArrayList<NetChangeObserver> netChangeObserverArrayList = new ArrayList<NetChangeObserver>();
+	private static ArrayList<NetChangeObserver> netChangeObserverArrayList = new ArrayList();
 	private final static String ANDROID_NET_CHANGE_ACTION = "android.net.conn.CONNECTIVITY_CHANGE";
 	private static BroadcastReceiver receiver;
 

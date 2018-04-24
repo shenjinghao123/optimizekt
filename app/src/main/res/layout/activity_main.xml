@@ -10,6 +10,8 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"/>
 
+
+
     <RelativeLayout
         android:id="@+id/rl_content"
         android:layout_width="match_parent"

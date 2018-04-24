@@ -5,6 +5,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 import top.horsttop.appcore.ui.base.BaseActivity
 import top.horsttop.appcore.util.PreferencesHelper
+import top.horsttop.appcore.util.net.NetChangeObserver
+import top.horsttop.appcore.util.net.NetWorkUtil
+import top.horsttop.appcore.util.net.NetworkStateReceiver
 import top.horsttop.optimizedkt.R
 import top.horsttop.optimizedkt.core.App
 import top.horsttop.optimizedkt.di.component.DaggerActivityComponent
@@ -31,14 +34,39 @@ class TestActivity : BaseActivity<TestMvpView,TestPresenter>(),TestMvpView {
 
     override fun initData(str: String?) {
         sample_text.text = str
+        NetworkStateReceiver.registerObserver( object :NetChangeObserver{
+            override fun onConnect(type: NetWorkUtil.NetType) {
+                Timber.i("onConnect :${type.name}")
+            }
 
+            override fun onDisConnect() {
+                Timber.i("onDisConnect")
+            }
+
+        })
     }
+
+
 
     override fun initViews() {
-        mLoadingArea = rl_content
         Timber.d("xxxx")
+        setUpLoadingArea(rl_content)
+
         mPresenter.fetchData()
     }
+
+    override fun onStart() {
+        super.onStart()
+        NetworkStateReceiver.registerNetworkStateReceiver(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        NetworkStateReceiver.unRegisterNetworkStateReceiver(this)
+    }
+
+
+
 
     override fun onClick(v: View?) {
 

@@ -30,6 +30,7 @@ abstract class BaseActivity<V : MvpView, out P : BasePresenter<V>> : AppCompatAc
      * contentView
      */
     protected  var mLoadingArea : View ?= null
+        private set
 
     /**
      * Loader
