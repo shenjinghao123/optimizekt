@@ -5,23 +5,23 @@ apply plugin: 'kotlin-kapt'
 
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion rootProject.ext.compileSdkVersion
 
 
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 26
+        targetSdkVersion rootProject.ext.compileSdkVersion
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        buildConfigField 'String', 'DB_NAME', '"horsttop_xxx.db"'
-        buildConfigField 'String', 'END_POINT', '"https://www.easy-mock.com/mock/5add86a9fe29a6045d0a7c5f/example/"'
+        buildConfigField 'String', 'DB_NAME', "$rootProject.ext.dbName"
+        buildConfigField 'String', 'END_POINT', "$rootProject.ext.endPoint"
         buildConfigField 'String', 'AUTH_END_POINT', '" "'
         buildConfigField 'String', 'CONSUMER_KEY', '" "'
         buildConfigField 'String', 'CONSUMER_SECRET', '" "'
-        buildConfigField 'String', 'AUTH_TOKEN', '"2893921857-wZ7pQxmeEkT3Gx1nO98aT0sE97FHyvqCNzJMQKB"'
+        buildConfigField 'String', 'AUTH_TOKEN', "$rootProject.ext.authToken"
     }
 
     buildTypes {
@@ -48,18 +48,14 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
 
     compile "com.android.support:appcompat-v7:$rootProject.ext.androidSupportVersion"
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     compile "com.android.support:design:$rootProject.ext.androidSupportVersion"
     compile "com.android.support:cardview-v7:$rootProject.ext.androidSupportVersion"
     compile "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofit"
     compile "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofit"
     compile "com.squareup.retrofit2:adapter-rxjava:$rootProject.ext.retrofit"
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
     /*  reactive   */
     compile 'io.reactivex.rxjava2:rxjava:2.1.9'

@@ -20,7 +20,7 @@ class TestPresenter @Inject constructor(var api: HttpApi) : BasePresenter<TestMv
                 .subscribeX(Consumer{ it ->
                     mvpView?.onPageSuccess()
                     mvpView?.initData(it.msg)
-                })
+                },mvpView)
         mCompositeDisposable?.add(subscription)
     }
 
