@@ -15,15 +15,13 @@ class TestPresenter @Inject constructor(var api: HttpApi) : BasePresenter<TestMv
 
     fun fetchData() {
         mvpView?.onLoading()
-        val subscription = api.fetchMsg()
+        api.fetchMsg()
                 .runOnMainThread()
-                .subscribeX(Consumer{ it ->
+                .subscribeX(Consumer { it ->
                     mvpView?.onPageSuccess()
                     mvpView?.initData(it.msg)
-                },mvpView)
-        mCompositeDisposable?.add(subscription)
+                }, mvpView)
     }
-
 
 
 }

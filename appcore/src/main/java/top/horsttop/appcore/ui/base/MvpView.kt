@@ -5,6 +5,8 @@ package top.horsttop.appcore.ui.base
  */
 interface MvpView {
 
+    fun setPresenter(presenter: BasePresenter<*>)
+
     fun onLoading (tip:String = "")
 
     fun onDataError (error:String = "")

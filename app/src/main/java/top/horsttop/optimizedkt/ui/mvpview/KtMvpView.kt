@@ -5,6 +5,4 @@ import top.horsttop.appcore.ui.base.MvpView
 /**
  * Created by horsttop on 2018/4/26.
  */
- interface T2MvpView : MvpView{
-
-}
+interface KtMvpView : MvpView

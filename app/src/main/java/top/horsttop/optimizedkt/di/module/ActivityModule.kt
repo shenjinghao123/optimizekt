@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import top.horsttop.appcore.dagger.runtime.PerActivity
 import top.horsttop.optimizedkt.model.api.HttpApi
+import top.horsttop.optimizedkt.ui.presenter.KtPresenter
 import top.horsttop.optimizedkt.ui.presenter.TestPresenter
 
 /**
@@ -19,7 +20,9 @@ class ActivityModule {
         return TestPresenter(api)
     }
 
-
-
-
+    @Provides
+    @PerActivity
+    internal fun ofKtPresenter(api: HttpApi): KtPresenter {
+        return KtPresenter(api)
+    }
 }

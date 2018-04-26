@@ -19,7 +19,7 @@ import java.lang.RuntimeException
 /**
  * Created by horsttop on 15/12/30.
  */
-abstract class BaseActivity<V : MvpView, out P : BasePresenter<V>> : AppCompatActivity(), MvpView, View.OnClickListener {
+abstract class BaseActivity : AppCompatActivity(), MvpView, View.OnClickListener {
 
     /**
      * 根布局
@@ -47,7 +47,7 @@ abstract class BaseActivity<V : MvpView, out P : BasePresenter<V>> : AppCompatAc
 
 //    protected var mPresenter: BasePresenter<V>? = null
 
-    private var mPresenter: BasePresenter<V>? = null
+    private var mPresenter: BasePresenter<*>? = null
 
 
     /**
@@ -111,6 +111,10 @@ abstract class BaseActivity<V : MvpView, out P : BasePresenter<V>> : AppCompatAc
         mLoadingArea = view
     }
 
+    override fun setPresenter(presenter: BasePresenter<*>) {
+        this.mPresenter = presenter
+    }
+
     override fun onLoading(tip: String) {
         mBaseLoadService?.showCallback(LoadingCallback::class.java)
     }
@@ -135,11 +139,6 @@ abstract class BaseActivity<V : MvpView, out P : BasePresenter<V>> : AppCompatAc
 
     }
 
-    override fun onStop() {
-        super.onStop()
-        if (mPresenter != null)
-            mPresenter!!.clearSubscriptions()
-    }
 
     override fun onDestroy() {
         super.onDestroy()

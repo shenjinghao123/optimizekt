@@ -5,6 +5,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 import top.horsttop.appcore.extention.ofColor
 import top.horsttop.appcore.ui.base.BaseActivity
+import top.horsttop.appcore.ui.base.BasePresenter
 import top.horsttop.appcore.util.PreferencesHelper
 import top.horsttop.appcore.util.net.NetChangeObserver
 import top.horsttop.appcore.util.net.NetWorkUtil
@@ -20,7 +21,9 @@ import javax.inject.Inject
 /**
  * Created by horsttop on 2018/4/18.
  */
-class TestActivity : BaseActivity<TestMvpView,TestPresenter>(),TestMvpView {
+class TestActivity : BaseActivity(),TestMvpView {
+
+
     override fun onActivityInject() {
 //        DaggerActivityComponent.builder()
 //                .appComponent(App.appComponent)

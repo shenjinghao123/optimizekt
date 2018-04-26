@@ -12,6 +12,4 @@ interface Presenter<in G : MvpView> : IPresenter{
 
     fun detachView()
 
-    fun clearSubscriptions()
-
 }

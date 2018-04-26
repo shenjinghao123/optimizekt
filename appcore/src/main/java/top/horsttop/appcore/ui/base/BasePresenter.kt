@@ -1,38 +1,33 @@
 package top.horsttop.appcore.ui.base
 
-import io.reactivex.disposables.CompositeDisposable
-import top.horsttop.appcore.core.GenApplication
+import java.lang.ref.WeakReference
 
 
 /**
  * Presenter层的基础实现类
  * Created by horsttop on 15/12/30.
  */
-open class BasePresenter<G : MvpView> : Presenter<G> {
+open class BasePresenter<V : MvpView>: Presenter<V> {
 
-    var mvpView: G? = null
-        private set
+    private var weakReference: WeakReference<V>? = null
 
-    var mCompositeDisposable: CompositeDisposable? = null
-        private set
-
-
-    override fun attachView(mvpView: G) {
-        if (null == mCompositeDisposable) {
-            mCompositeDisposable = CompositeDisposable()
+    override fun attachView(view: V) {
+        if (!isViewAttached) {
+            weakReference = WeakReference(view)
+            view.setPresenter(this)
         }
-        this.mvpView = mvpView
     }
 
     override fun detachView() {
-        if (null != mCompositeDisposable) {
-            mCompositeDisposable!!.clear()
-        }
-
+        weakReference?.clear()
+        weakReference = null
     }
 
-    override fun clearSubscriptions() {
-        mvpView = null
-    }
+    val mvpView: V?
+        get() = weakReference?.get()
+
+    private val isViewAttached: Boolean
+        get() = weakReference != null && weakReference!!.get() != null
+
 
 }
