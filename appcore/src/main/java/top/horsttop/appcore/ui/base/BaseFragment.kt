@@ -48,9 +48,9 @@ abstract class BaseFragment<V : MvpView, out P : BasePresenter<V>> : Fragment(),
             mPresenter!!.attachView(obtainMvpView())
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         try {
-            rootView = inflater!!.inflate(contentViewId, container, false)
+            rootView = inflater.inflate(contentViewId, container, false)
 
 
         } catch (e: NullPointerException) {
@@ -62,7 +62,7 @@ abstract class BaseFragment<V : MvpView, out P : BasePresenter<V>> : Fragment(),
         return rootView
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews()
     }

@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.2.30'
+    ext.kotlin_version = '1.2.40'
     repositories {
         google()
         jcenter()
@@ -31,9 +31,9 @@ ext {
 //    rxandroid                = '2.0.1'
     rxandroid                = '1.2.0'
     glide                    = '4.3.1'
-    dbName                   = 'horsttop_water_service.db'
-    endPoint                 = ""
-    authToken                = ""
+    dbName                   = '"horsttop_water_service.db"'
+    endPoint                 = '"https://www.easy-mock.com/mock/5add86a9fe29a6045d0a7c5f/example/"'
+    authToken                = '""'
 }
 
 
