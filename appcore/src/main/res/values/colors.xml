@@ -5,18 +5,13 @@
     <color name="shadow_start_color">#37000000</color>
 
 
-    <color name="colorPrimary">#78b31b</color>
-    <color name="colorPrimary.transparent.half">#7f78b31b</color>
+    <color name="colorPrimary">#3F51B5</color>
 
-    <color name="colorPrimaryDark">#598415</color>
+    <color name="colorPrimaryDark">#303F9F</color>
 
-    <color name="colorPrimaryDark.transparent.half">#80598415</color>
-
-    <color name="colorAccent">#78b31b</color>
+    <color name="colorAccent">#FF4081</color>
 
     <color name="white">#fff</color>
-
-    <color name="white.transfer.half">#e3ffffff</color>
 
     <color name="black">#000</color>
 
@@ -43,5 +38,7 @@
     <color name="red.red">#c60202</color>
 
     <color name="orange.300">#ffb74d</color>
+
+    <color name="orange.press">#c28833</color>
 
 </resources>

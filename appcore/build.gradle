@@ -90,8 +90,15 @@ dependencies {
     api 'com.squareup.moshi:moshi:1.5.0'
     api 'com.squareup.moshi:moshi-kotlin:1.5.0'
 
+    /* EventBus*/
+    api "org.greenrobot:eventbus:$rootProject.ext.eventBus"
+
     /* multidex*/
     api 'com.android.support:multidex:1.0.3'
+
+
+    /* roundImageView*/
+    api 'com.makeramen:roundedimageview:2.3.0'
 
 
 }

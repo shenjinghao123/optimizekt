@@ -1,24 +1,17 @@
 package top.horsttop.appcore.network
 
-import android.app.Application
 import android.content.Context
 import android.util.Base64
-import android.util.Log
-import dagger.Module
 import okhttp3.*
 
-
-import org.json.JSONException
-import org.json.JSONObject
 
 import java.io.IOException
 
 import top.horsttop.appcore.BuildConfig
-import top.horsttop.appcore.core.GenApplication
 import top.horsttop.appcore.util.net.NetWorkUtil
+import top.horsttop.core.exception.ExceptionCode
+import top.horsttop.core.exception.QuitException
 import java.lang.RuntimeException
-import javax.inject.Inject
-import javax.inject.Singleton
 
 /**
  * Created by horsttop on 2018/4/13.
@@ -28,26 +21,41 @@ import javax.inject.Singleton
 class RetrofitInterceptor(var context:Context) : Interceptor {
 
     companion object {
-         var token: String = "asdf"
+         var token: String = ""
     }
 
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response ?{
 
 
-        var request = chain.request()
-        val requestBuilder = request.newBuilder()
-                .method(request.method(), request.body())
-        requestBuilder.cacheControl(CacheControl.FORCE_CACHE)
         if(!NetWorkUtil.isNetworkConnected(context)){
             throw NetworkErrorException()
         }
+        var request = chain.request()
 
-        request = request.newBuilder()
-                .addHeader("Authorization", token)
-                .build()
 
-        return chain.proceed(request)
+
+        if(token.isEmpty().not()){
+            request = request.newBuilder()
+                    .addHeader("Authorization", token)
+                    .build()
+        }
+        val response = chain.proceed(request)
+
+
+
+        when(response.code()){
+            401 ->{
+                throw QuitException(ExceptionCode.ACCESS_EXCEPTION.message,ExceptionCode.ACCESS_EXCEPTION.code)
+            }
+            500 ->{
+                throw QuitException(ExceptionCode.SERVER_EXCEPTION.message,ExceptionCode.SERVER_EXCEPTION.code)
+            }
+        }
+
+
+
+        return response
     }
 
     private fun getToken(): Request {

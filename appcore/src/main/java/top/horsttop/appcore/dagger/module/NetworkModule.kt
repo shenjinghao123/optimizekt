@@ -44,7 +44,7 @@ class NetworkModule {
                     .build()
 
             requestBuilder.cacheControl(cacheControl)
-            requestBuilder.header("Content-Type", "application/json")
+//            requestBuilder.header("Content-Type", "application/json")
             val request = requestBuilder.build()
 
             val originalResponse = chain.proceed(request)
@@ -70,8 +70,8 @@ class NetworkModule {
                 .addInterceptor(RetrofitInterceptor(context))
                 .addInterceptor(HttpLoggingInterceptor()
                         .setLevel(HttpLoggingInterceptor.Level.BODY))
-                .addNetworkInterceptor(CachingControlInterceptor())
-                .cache(cache)
+//                .addNetworkInterceptor(CachingControlInterceptor())
+//                .cache(cache)
                 .retryOnConnectionFailure(true)
                 .connectTimeout(120, TimeUnit.SECONDS)
                 .readTimeout(120, TimeUnit.SECONDS)

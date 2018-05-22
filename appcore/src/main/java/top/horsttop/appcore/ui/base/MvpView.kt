@@ -17,4 +17,8 @@ interface MvpView {
 
     fun onNetworkError()
 
+    fun onPost(tip:String = "")
+
+    fun onPostEnd()
+
 }

@@ -3,17 +3,13 @@ package top.horsttop.optimizedkt.ui.activity
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
-import top.horsttop.appcore.extention.ofColor
 import top.horsttop.appcore.ui.base.BaseActivity
-import top.horsttop.appcore.ui.base.BasePresenter
-import top.horsttop.appcore.util.PreferencesHelper
 import top.horsttop.appcore.util.net.NetChangeObserver
 import top.horsttop.appcore.util.net.NetWorkUtil
 import top.horsttop.appcore.util.net.NetworkStateReceiver
 import top.horsttop.optimizedkt.R
 import top.horsttop.optimizedkt.core.App
-import top.horsttop.optimizedkt.di.component.DaggerActivityComponent
-import top.horsttop.optimizedkt.di.module.ActivityModule
+import top.horsttop.optimizedkt.di.component.DaggerViewComponent
 import top.horsttop.optimizedkt.ui.mvpview.TestMvpView
 import top.horsttop.optimizedkt.ui.presenter.TestPresenter
 import javax.inject.Inject
@@ -31,11 +27,10 @@ class TestActivity : BaseActivity(),TestMvpView {
 //                .build()
 //                .inject(this)
 //        mPresenter.attachView(this)
-        DaggerActivityComponent.builder()
-                .appComponent(App.appComponent)
-                .activityModule(ActivityModule())
-                .build()
-                .inject(this)
+        DaggerViewComponent.builder()
+                        .appComponent(App.appComponent)
+                        .build()
+                        .inject(this)
         mPresenter.attachView(this)
 
 

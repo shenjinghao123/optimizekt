@@ -2,7 +2,6 @@ package top.horsttop.optimizedkt.di.component
 
 import dagger.Component
 import top.horsttop.appcore.dagger.component.CoreComponent
-import top.horsttop.appcore.dagger.runtime.PerActivity
 import top.horsttop.appcore.dagger.runtime.PerApplication
 import top.horsttop.optimizedkt.core.App
 import top.horsttop.optimizedkt.di.module.ApiModule

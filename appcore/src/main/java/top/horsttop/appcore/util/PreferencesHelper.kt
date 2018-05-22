@@ -1,12 +1,14 @@
 package top.horsttop.appcore.util
 
+import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import javax.inject.Inject
 
 /**
  * Created by horsttop on 16/1/2.
  */
-class PreferencesHelper(var context: Context) {
+class PreferencesHelper @Inject constructor(var context: Application) {
 
 
     private val mPref: SharedPreferences
@@ -20,7 +22,7 @@ class PreferencesHelper(var context: Context) {
      * @param key
      * @param value
      */
-    fun saveConfig(key: String, value: String) {
+    fun saveConfig(key: String, value: String?) {
         mPref.edit().putString(key, value).apply()
     }
 

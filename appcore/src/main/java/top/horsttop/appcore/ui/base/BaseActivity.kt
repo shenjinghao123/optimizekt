@@ -1,15 +1,20 @@
 package top.horsttop.appcore.ui.base
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import top.horsttop.appcore.R
+import top.horsttop.appcore.core.GenApp
 import top.horsttop.appcore.extention.ofColor
 import top.horsttop.appcore.load.callback.*
 import top.horsttop.appcore.load.core.LoadService
 import top.horsttop.appcore.load.core.Loader
 import top.horsttop.appcore.statusbar.StatusBarUtil
+import top.horsttop.appcore.util.alert.AlertHelper
+import top.horsttop.appcore.util.progress.PostDialog
+import top.horsttop.core.exception.Cockroach
 
 import java.lang.Exception
 import java.lang.NullPointerException
@@ -24,18 +29,18 @@ abstract class BaseActivity : AppCompatActivity(), MvpView, View.OnClickListener
     /**
      * 根布局
      */
-    protected lateinit var mRootView : View
+    protected lateinit var mRootView: View
 
     /**
      * contentView
      */
-    protected  var mLoadingArea : View ?= null
+    protected var mLoadingArea: View? = null
         private set
 
     /**
      * Loader
      */
-    protected  var mBaseLoadService : LoadService<*>?= null
+    protected var mBaseLoadService: LoadService<*>? = null
 
 
     /**
@@ -45,7 +50,6 @@ abstract class BaseActivity : AppCompatActivity(), MvpView, View.OnClickListener
      */
     protected abstract val contentViewId: Int
 
-//    protected var mPresenter: BasePresenter<V>? = null
 
     private var mPresenter: BasePresenter<*>? = null
 
@@ -73,19 +77,18 @@ abstract class BaseActivity : AppCompatActivity(), MvpView, View.OnClickListener
         super.onCreate(savedInstanceState)
         try {
 
-            mRootView = View.inflate(this,contentViewId,null)
+            mRootView = View.inflate(this, contentViewId, null)
 
             setContentView(mRootView)
 
             initStatusBar()
 
-//            GenApp.pushActivity(this)
+            GenApp.pushActivity(this)
             onActivityInject()
             initViews()
 
-            if(mLoadingArea !=null){
-                mBaseLoadService = Loader.getDefault().register(mLoadingArea) {
-                    it ->
+            if (mLoadingArea != null) {
+                mBaseLoadService = Loader.getDefault().register(mLoadingArea) { it ->
                     onReload(it)
                 }
             }
@@ -98,7 +101,7 @@ abstract class BaseActivity : AppCompatActivity(), MvpView, View.OnClickListener
         }
     }
 
-    fun initStatusBar() {
+    open fun initStatusBar() {
         StatusBarUtil.setColor(this, this.ofColor(R.color.colorPrimary))
     }
 
@@ -107,7 +110,7 @@ abstract class BaseActivity : AppCompatActivity(), MvpView, View.OnClickListener
         resumeViews()
     }
 
-    fun setUpLoadingArea(view: View){
+    fun setUpLoadingArea(view: View) {
         mLoadingArea = view
     }
 
@@ -135,18 +138,26 @@ abstract class BaseActivity : AppCompatActivity(), MvpView, View.OnClickListener
         mBaseLoadService?.showSuccess()
     }
 
-    fun onReload(view: View){
+    override fun onPost(tip: String) {
+        PostDialog.showProgress(this,tip)
+    }
+
+    override fun onPostEnd() {
+
+        PostDialog.dismiss()
+    }
+
+
+    fun onReload(view: View) {
 
     }
 
 
     override fun onDestroy() {
         super.onDestroy()
-//        GenUIUtil.dropProgressDialog()
-//        GenApp.popActivity(this)
-
-        if (mPresenter != null)
-            mPresenter!!.detachView()
+        GenApp.popActivity(this)
+        PostDialog.dismiss()
+        mPresenter?.detachView()
 
     }
 
