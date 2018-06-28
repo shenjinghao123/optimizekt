@@ -18,6 +18,7 @@ android {
 
         buildConfigField 'String', 'DB_NAME', "$rootProject.ext.dbName"
         buildConfigField 'String', 'END_POINT', "$rootProject.ext.endPoint"
+        buildConfigField 'String', 'SE_END_POINT', "$rootProject.ext.seEndPoint"
         buildConfigField 'String', 'AUTH_END_POINT', '" "'
         buildConfigField 'String', 'CONSUMER_KEY', '" "'
         buildConfigField 'String', 'CONSUMER_SECRET', '" "'
@@ -84,5 +85,5 @@ dependencies {
 
 
 
-    implementation project(':recycler')
+    api project(':recycler')
 }

@@ -7,5 +7,8 @@ import com.squareup.moshi.Json
 data class MsgVo(
 
 	@Json(name="msg")
-	val msg: String? = null
+	val msg: String? = null,
+
+	@Json(name = "data")
+	val data:String? = null
 )

@@ -19,14 +19,7 @@ public class NetworkStateReceiver extends BroadcastReceiver {
 	private final static String ANDROID_NET_CHANGE_ACTION = "android.net.conn.CONNECTIVITY_CHANGE";
 	private static BroadcastReceiver receiver;
 
-	/**
-	 *
-	 * @Title: getReceiver
-	 * @说 明:获得广播实例
-	 * @参 数: @return
-	 * @return BroadcastReceiver 返回类型
-	 * @throws
-	 */
+
 	private static BroadcastReceiver getReceiver() {
 		if (receiver == null) {
 			receiver = new NetworkStateReceiver();
