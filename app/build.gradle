@@ -51,5 +51,6 @@ dependencies {
     api 'com.google.dagger:dagger:2.13'
     kapt 'com.google.dagger:dagger-compiler:2.13'
     compileOnly "org.glassfish:javax.annotation:10.0-b28"
+    compile "org.jetbrains.kotlin:kotlin-script-runtime:1.2.71"
 
 }

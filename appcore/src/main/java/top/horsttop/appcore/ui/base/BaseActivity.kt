@@ -31,11 +31,6 @@ abstract class BaseActivity : AppCompatActivity(), MvpView, View.OnClickListener
      */
     protected lateinit var mRootView: View
 
-    /**
-     * contentView
-     */
-    protected var mLoadingArea: View? = null
-        private set
 
     /**
      * Loader
@@ -87,11 +82,11 @@ abstract class BaseActivity : AppCompatActivity(), MvpView, View.OnClickListener
             onActivityInject()
             initViews()
 
-            if (mLoadingArea != null) {
-                mBaseLoadService = Loader.getDefault().register(mLoadingArea) { it ->
-                    onReload(it)
-                }
-            }
+//            if (mLoadingArea != null) {
+//                mBaseLoadService = Loader.getDefault().register(mLoadingArea) { it ->
+//                    onReload(it)
+//                }
+//            }
 
 
         } catch (e: NullPointerException) {
@@ -110,8 +105,11 @@ abstract class BaseActivity : AppCompatActivity(), MvpView, View.OnClickListener
         resumeViews()
     }
 
-    fun setUpLoadingArea(view: View) {
-        mLoadingArea = view
+
+    protected fun initLoadService(mLoadingArea:View){
+        mBaseLoadService = Loader.getDefault().register(mLoadingArea) { it ->
+            onReload(it)
+        }
     }
 
     override fun setPresenter(presenter: BasePresenter<*>) {

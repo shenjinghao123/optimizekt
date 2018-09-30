@@ -16,10 +16,7 @@ class App : GenApp(){
     override fun onCreate() {
         super.onCreate()
 
-//        appGraph = appGraphBuilder
         Timber.d("to inject")
-//        appGraph?.inject(this)
-//        httpApi = retrofit.create(HttpApi::class.java)
         appComponent = DaggerAppComponent.builder()
                 .coreComponent(coreComponent)
                 .build()
