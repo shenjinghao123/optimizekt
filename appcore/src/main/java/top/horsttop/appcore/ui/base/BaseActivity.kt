@@ -82,13 +82,6 @@ abstract class BaseActivity : AppCompatActivity(), MvpView, View.OnClickListener
             onActivityInject()
             initViews()
 
-//            if (mLoadingArea != null) {
-//                mBaseLoadService = Loader.getDefault().register(mLoadingArea) { it ->
-//                    onReload(it)
-//                }
-//            }
-
-
         } catch (e: NullPointerException) {
             e.printStackTrace()
         } catch (e: Exception) {
@@ -106,8 +99,8 @@ abstract class BaseActivity : AppCompatActivity(), MvpView, View.OnClickListener
     }
 
 
-    protected fun initLoadService(mLoadingArea:View){
-        mBaseLoadService = Loader.getDefault().register(mLoadingArea) { it ->
+    protected fun ofLoadingArea(loadingArea:View){
+        mBaseLoadService = Loader.getDefault().register(loadingArea) { it ->
             onReload(it)
         }
     }

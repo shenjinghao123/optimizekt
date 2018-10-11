@@ -86,4 +86,5 @@ dependencies {
 
 
     api project(':recycler')
+    api project(':permissions')
 }

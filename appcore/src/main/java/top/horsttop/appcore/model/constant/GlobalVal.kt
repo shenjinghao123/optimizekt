@@ -24,9 +24,10 @@ object GlobalVal {
     /**
      * 相机权限请求号
      */
-    const val PERMISSIONS_REQUEST_CAMERA                 = 401
+    const val PERMISSIONS_REQUEST_CAMERA                 = 4601
 
+    const val PERMISSION_REQUEST_STORAGE_READ_ACCESS     = 4602
 
-    const val PERMISSION_REQUEST_STORAGE_READ_ACCESS     = 402
+    const val PERMISSION_REQUEST_LOCATION                = 4603
 
 }

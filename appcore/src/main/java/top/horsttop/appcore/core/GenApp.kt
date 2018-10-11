@@ -83,7 +83,7 @@ open class GenApp : Application() {
     }
 
     @Inject
-    lateinit var preferencesHelper: PreferencesHelper
+    public lateinit var preferencesHelper: PreferencesHelper
 
 
     override fun onCreate() {
