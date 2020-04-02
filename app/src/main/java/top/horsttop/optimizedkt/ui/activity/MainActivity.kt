@@ -29,7 +29,6 @@ class MainActivity : BaseActivity(), MainMvpView {
     override fun onClick(v: View?) {
         when(v?.id){
             R.id.btn_1 ->{
-                startActivity(btn_1,RecyclerActivity::class.java)
             }
         }
     }

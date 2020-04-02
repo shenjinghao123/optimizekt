@@ -1,1 +1,1 @@
-include ':app', ':appcore', ':recycler', ':permissions'
+include ':app', ':appcore'

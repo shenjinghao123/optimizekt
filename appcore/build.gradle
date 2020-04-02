@@ -85,11 +85,6 @@ dependencies {
     /* roundImageView*/
     api 'com.makeramen:roundedimageview:2.3.0'
 
-
-
-    api project(':recycler')
-    api project(':permissions')
-
     api "androidx.collection:collection-ktx:1.1.0"
     api 'androidx.fragment:fragment-ktx:1.2.3'
     api "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
