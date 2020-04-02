@@ -11,12 +11,12 @@ import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
-import android.support.v4.app.ActivityCompat
-import android.support.v4.content.FileProvider
 import java.io.File
 import android.content.ContentUris
 import android.provider.DocumentsContract
-import android.support.v4.app.Fragment
+import androidx.core.app.ActivityCompat
+import androidx.core.content.FileProvider
+import androidx.fragment.app.Fragment
 import top.horsttop.appcore.model.constant.GlobalVal.PERMISSION_REQUEST_STORAGE_READ_ACCESS
 import top.horsttop.appcore.util.PermissionsUtil.requestPermission
 

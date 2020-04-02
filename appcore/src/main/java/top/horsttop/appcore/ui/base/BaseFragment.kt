@@ -1,10 +1,10 @@
 package top.horsttop.appcore.ui.base
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import top.horsttop.appcore.load.callback.EmptyCallback
 import top.horsttop.appcore.load.callback.ErrorCallback
 import top.horsttop.appcore.load.callback.LoadingCallback

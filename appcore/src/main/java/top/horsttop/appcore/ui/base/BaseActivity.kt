@@ -1,10 +1,9 @@
 package top.horsttop.appcore.ui.base
 
-import android.app.ProgressDialog
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import top.horsttop.appcore.R
 import top.horsttop.appcore.core.GenApp
 import top.horsttop.appcore.extention.ofColor

@@ -1,7 +1,7 @@
 package top.horsttop.optimizedkt.ui.activity
 
-import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_recycler.*
 import top.horsttop.appcore.model.constant.GlobalVal
 import top.horsttop.appcore.ui.base.BaseActivity

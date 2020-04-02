@@ -10,7 +10,7 @@ import javax.inject.Singleton
 /**
  * Created by horsttop on 2018/4/19.
  */
-@Singleton
+//@Singleton
 @Module
 class ApiModule {
 

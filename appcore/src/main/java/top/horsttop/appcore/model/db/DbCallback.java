@@ -1,7 +1,8 @@
 package top.horsttop.appcore.model.db;
 
-import android.arch.persistence.db.SupportSQLiteDatabase;
-import android.arch.persistence.db.SupportSQLiteOpenHelper;
+
+import androidx.sqlite.db.SupportSQLiteDatabase;
+import androidx.sqlite.db.SupportSQLiteOpenHelper;
 
 /**
  * Created by horsttop on 2018/4/16.

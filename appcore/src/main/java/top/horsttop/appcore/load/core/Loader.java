@@ -1,6 +1,7 @@
 package top.horsttop.appcore.load.core;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 import top.horsttop.appcore.load.callback.Callback;

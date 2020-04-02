@@ -1,6 +1,7 @@
 package top.horsttop.appcore.ui.recyclerview;
 
-import android.support.design.widget.AppBarLayout;
+
+import com.google.android.material.appbar.AppBarLayout;
 
 /**
  * Created by horsttop on 18/05/19.

@@ -1,11 +1,11 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 29
 
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 27
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
     }
@@ -22,9 +22,12 @@ dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
 
 
-    api "com.android.support:appcompat-v7:$rootProject.ext.androidSupportVersion"
-    api "com.android.support:recyclerview-v7:$rootProject.ext.androidSupportVersion"
-    api "com.android.support:design:$rootProject.ext.androidSupportVersion"
+//    api "com.android.support:appcompat-v7:$rootProject.ext.androidSupportVersion"
+//    api "com.android.support:recyclerview-v7:$rootProject.ext.androidSupportVersion"
+//    api "com.android.support:design:$rootProject.ext.androidSupportVersion"
+    api 'androidx.appcompat:appcompat:1.1.0'
+    api 'androidx.recyclerview:recyclerview:1.1.0'
+    api 'com.google.android.material:material:1.2.0-alpha05'
 
 }
 

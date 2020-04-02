@@ -7,12 +7,12 @@ import android.content.Intent
 import android.graphics.Point
 import android.os.Build
 import android.os.Bundle
-import android.support.annotation.ColorRes
-import android.support.v4.app.ActivityCompat
-import android.support.v4.app.ActivityOptionsCompat
-import android.support.v4.content.ContextCompat
 import android.view.View
 import android.view.WindowManager
+import androidx.annotation.ColorRes
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.content.ContextCompat
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers

@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
+group='com.xiaohuodui.optimizekt'
 
 
 android {
@@ -59,23 +60,23 @@ dependencies {
     api 'io.reactivex.rxjava2:rxjava:2.1.9'
     api 'io.reactivex.rxjava2:rxandroid:2.0.2'
     /* Retrofit 2*/
-    api 'com.squareup.retrofit2:converter-moshi:2.4.0'
-    api 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    api 'com.squareup.retrofit2:converter-moshi:2.8.1'
+    api 'com.squareup.retrofit2:adapter-rxjava2:2.8.1'
     //    compile 'com.squareup.retrofit2:converter-gson:2.4.0'
-    api 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+    api 'com.squareup.okhttp3:logging-interceptor:4.4.1'
     /* Dagger */
-    api 'com.google.dagger:dagger:2.13'
-    kapt 'com.google.dagger:dagger-compiler:2.13'
+    api 'com.google.dagger:dagger:2.27'
+    kapt 'com.google.dagger:dagger-compiler:2.27'
     compileOnly 'org.glassfish:javax.annotation:10.0-b28'
     /* SqlBrite*/
     api 'com.squareup.sqlbrite3:sqlbrite-kotlin:3.2.0'
     api 'com.squareup.sqlbrite3:sqlbrite:3.2.0'
-    implementation 'android.arch.persistence:db-framework:1.0.0'
+    implementation 'android.arch.persistence:db-framework:1.1.1'
     /* timber*/
-    api 'com.jakewharton.timber:timber:4.7.0'
+    api 'com.jakewharton.timber:timber:4.7.1'
     /* Moshi*/
-    api 'com.squareup.moshi:moshi:1.5.0'
-    api 'com.squareup.moshi:moshi-kotlin:1.5.0'
+    api 'com.squareup.moshi:moshi:1.9.2'
+    api 'com.squareup.moshi:moshi-kotlin:1.9.2'
     /* EventBus*/
     api "org.greenrobot:eventbus:$rootProject.ext.eventBus"
     /* multidex*/
@@ -87,4 +88,23 @@ dependencies {
 
     api project(':recycler')
     api project(':permissions')
+
+    api "androidx.collection:collection-ktx:1.1.0"
+    api 'androidx.fragment:fragment-ktx:1.2.3'
+    api "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
+    api "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
+
+    api 'androidx.navigation:navigation-runtime-ktx:2.3.0-alpha04'
+    api 'androidx.navigation:navigation-fragment-ktx:2.3.0-alpha04'
+    api 'androidx.navigation:navigation-ui-ktx:2.3.0-alpha04'
+    api "androidx.palette:palette-ktx:1.0.0"
+    api "androidx.lifecycle:lifecycle-reactivestreams-ktx:2.2.0"
+    api 'androidx.room:room-ktx:2.2.5'
+    api "androidx.sqlite:sqlite-ktx:2.1.0"
+    api "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+    api 'androidx.work:work-runtime-ktx:2.3.4'
+    api 'com.google.android.play:core-ktx:1.7.0'
+
+    api "androidx.viewpager2:viewpager2:1.0.0"
+    api 'com.google.android.material:material:1.2.0-alpha05'
 }

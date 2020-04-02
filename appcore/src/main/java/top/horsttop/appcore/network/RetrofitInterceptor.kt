@@ -3,6 +3,8 @@ package top.horsttop.appcore.network
 import android.content.Context
 import android.util.Base64
 import okhttp3.*
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.toRequestBody
 
 
 import java.io.IOException
@@ -25,7 +27,7 @@ class RetrofitInterceptor(var context:Context) : Interceptor {
     }
 
     @Throws(IOException::class)
-    override fun intercept(chain: Interceptor.Chain): Response ?{
+    override fun intercept(chain: Interceptor.Chain): Response{
 
 
         if(!NetWorkUtil.isNetworkConnected(context)){
@@ -44,7 +46,7 @@ class RetrofitInterceptor(var context:Context) : Interceptor {
 
 
 
-        when(response.code()){
+        when(response.code){
             401 ->{
                 throw QuitException(ExceptionCode.ACCESS_EXCEPTION.message,ExceptionCode.ACCESS_EXCEPTION.code)
             }
@@ -63,7 +65,8 @@ class RetrofitInterceptor(var context:Context) : Interceptor {
                 ":" + BuildConfig.CONSUMER_SECRET
 
         val base64BearerToken = "Basic " + Base64.encodeToString(bearerToken.toByteArray(), Base64.NO_WRAP)
-        val requestBody = RequestBody.create(MediaType.parse("application/x-www-form-urlencoded; charset=UTF-8"), "grant_type=client_credentials")
+//        val requestBody = RequestBody.create("application/x-www-form-urlencoded; charset=UTF-8".toMediaTypeOrNull(), "grant_type=client_credentials")
+        val requestBody = "grant_type=client_credentials".toRequestBody("application/x-www-form-urlencoded; charset=UTF-8".toMediaTypeOrNull())
 
         return Request.Builder()
                 .url(BuildConfig.AUTH_END_POINT)

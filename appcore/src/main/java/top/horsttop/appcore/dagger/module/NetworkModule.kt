@@ -1,7 +1,7 @@
 package top.horsttop.appcore.dagger.module
 
 import android.app.Application
-import com.squareup.moshi.KotlinJsonAdapterFactory
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -19,7 +19,7 @@ import javax.inject.Singleton
 /**
  * Created by horsttop on 2018/4/13.
  */
-@Singleton
+//@Singleton
 @Module
 class NetworkModule {
 

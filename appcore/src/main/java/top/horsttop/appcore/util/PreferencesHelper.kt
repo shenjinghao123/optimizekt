@@ -51,7 +51,7 @@ class PreferencesHelper @Inject constructor(var context: Application) {
      * @return
      */
     fun getStringConfig(key: String): String {
-        return mPref.getString(key, "")
+        return mPref.getString(key, "")?:""
     }
 
     /**

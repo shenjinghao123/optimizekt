@@ -1,20 +1,20 @@
 package top.horsttop.appcore.util.toast
 
 import android.view.LayoutInflater
-import android.support.annotation.LayoutRes
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.widget.Toast
-import android.support.v4.widget.TextViewCompat
 import android.widget.TextView
-import android.support.annotation.StringRes
-import android.support.annotation.ColorInt
-import android.support.annotation.DrawableRes
 import android.content.Context
 import android.os.Handler
 import android.view.Gravity
 import android.os.Looper
 import android.view.View
+import androidx.annotation.ColorInt
+import androidx.annotation.DrawableRes
+import androidx.annotation.LayoutRes
+import androidx.annotation.StringRes
+import androidx.core.widget.TextViewCompat
 import top.horsttop.appcore.core.GenApp
 import top.horsttop.appcore.extention.dp2px
 import java.lang.ref.WeakReference
